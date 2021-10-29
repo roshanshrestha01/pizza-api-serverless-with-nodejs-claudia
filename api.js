@@ -3,6 +3,8 @@ const api = new Api();
 
 const getPizzas = require('./handlers/get-pizzas');
 const createOrder = require('./handlers/create-order');
+const updateOrder = require('./handlers/update-order');
+const deleteOrder = require('./handlers/delete-order');
 
 api.get('/', () => "Welcome to pizza API")
 
@@ -20,6 +22,18 @@ api.post('/orders', (request) => {
   return createOrder(request.body)
 }, {
   success: 201,
+  error: 400,
+})
+
+api.put('/orders/{id}', (id, request) => {
+  return updateOrder(request.pathParams.id, request.body)
+}, {
+  error: 400,
+})
+
+api.delete('/orders/{id}', (request) => {
+  return deleteOrder(request.pathParams.id)
+}, {
   error: 400,
 })
 
