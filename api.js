@@ -38,7 +38,7 @@ api.post('/orders', (request) => {
   error: 400,
 })
 
-api.put('/orders/{id}', (id, request) => {
+api.put('/orders/{id}', (request) => {
   return updateOrder(request.pathParams.id, request.body)
 }, {
   error: 400,
